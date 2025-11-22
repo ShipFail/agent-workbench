@@ -44,10 +44,11 @@
           <a href="#mcp" class="hover:text-slate-50">MCP surface</a>
           <a href="#stack" class="hover:text-slate-50">In your stack</a>
           <a href="#who" class="hover:text-slate-50">For whom</a>
+          <a href="#faq" class="hover:text-slate-50">FAQ</a>
         </div>
         <div class="flex items-center gap-3">
           <a
-            href="#github"
+            href="https://github.com/ShipFail/agent-workbench"
             class="hidden rounded-lg border border-slate-700 px-3 py-1.5 text-[11px] font-medium text-slate-200 hover:border-slate-500 hover:bg-slate-900 md:inline-flex"
           >
             Star on GitHub
@@ -69,7 +70,7 @@
         <div>
           <div class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-[11px] font-medium text-slate-300">
             <span class="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-            <span>MCP-native runtime for autonomous agents</span>
+            <span>MCP-native substrate for autonomous agents</span>
           </div>
 
           <h1 class="mt-5 text-balance text-3xl font-semibold tracking-tight text-slate-50 sm:text-4xl lg:text-5xl">
@@ -79,20 +80,20 @@
 
           <p class="mt-4 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
             <span class="font-semibold text-slate-100">Agent Workbench (AWB)</span> is an MCP-powered workbench where
-            agents can <span class="font-semibold">design, craft, evolve, and retire their own tools</span> — backed by a
+            agents can <span class="font-semibold">design, ship, evolve, and retire their own tools</span> — backed by a
             memory-aware inventory that behaves like short-, mid-, and long-term human memory.
           </p>
 
           <p class="mt-3 max-w-xl text-xs leading-relaxed text-slate-400 sm:text-sm">
-            Instead of shipping agents with a bloated, static tool catalog, AWB lets them synthesize just-in-time tools
-            for the concrete problem in front of them, then promote proven tools into a reusable inventory and quietly
-            forget the rest.
+            Instead of hard-wiring a 50-tool manifest into every agent and praying the router behaves, AWB lets agents
+            synthesize just-in-time tools for the concrete job in front of them, promote what works, and quietly forget
+            the rest. Fewer always-on tools, more compounding behavior.
           </p>
 
           <div class="mt-6 flex flex-wrap items-center gap-3">
             <a
               id="cta"
-              href="#github"
+              href="https://github.com/ShipFail/agent-workbench"
               class="inline-flex items-center gap-2 rounded-lg bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-950 shadow-lg shadow-slate-100/20 hover:bg-white"
             >
               View on GitHub
@@ -106,21 +107,21 @@
             >
               Read MCP surface
             </a>
-            <span class="text-[11px] text-slate-500">For agent framework authors, infra engineers & AI-native founders.</span>
+            <span class="text-[11px] text-slate-500">Built for agent framework authors, infra engineers & AI-native founders.</span>
           </div>
 
           <div class="mt-8 grid gap-4 text-[11px] text-slate-400 sm:grid-cols-3 sm:text-xs">
             <div class="rounded-lg border border-slate-800 bg-slate-900/70 p-3">
-              <p class="font-semibold text-slate-200">Tools as memory</p>
-              <p class="mt-1">Each crafted tool is stored, ranked, and resurfaced via embeddings, usage, and decay.</p>
+              <p class="font-semibold text-slate-200">Tools as a memory layer</p>
+              <p class="mt-1">Each crafted tool is stored, ranked, and resurfaced via embeddings, usage, and decay — like code meets RAG.</p>
             </div>
             <div class="rounded-lg border border-slate-800 bg-slate-900/70 p-3">
-              <p class="font-semibold text-slate-200">MCP-native, zero-friction</p>
-              <p class="mt-1">Drop-in MCP server with a single <span class="font-mono text-[11px]">npx awb start</span>. No weird sidecars.</p>
+              <p class="font-semibold text-slate-200">MCP-native, zero ceremony</p>
+              <p class="mt-1">Drop-in MCP server with <span class="font-mono text-[11px]">npx awb start</span>. No bespoke gateway, no new control plane.</p>
             </div>
             <div class="rounded-lg border border-slate-800 bg-slate-900/70 p-3">
               <p class="font-semibold text-slate-200">Cognitive load aware</p>
-              <p class="mt-1">Agents equip a minimal active toolset; everything else lives in searchable inventory.</p>
+              <p class="mt-1">Agents equip a minimal tool belt; everything else lives in semantic inventory, not in the context window.</p>
             </div>
           </div>
         </div>
@@ -156,7 +157,7 @@
             <div class="flex items-center justify-between gap-2">
               <div>
                 <p class="text-xs font-semibold text-slate-100">Tool inventory as memory</p>
-                <p class="mt-1 text-[11px] text-slate-400">Three-tier storage, automatic promotion, semantic search.</p>
+                <p class="mt-1 text-[11px] text-slate-400">Three-tier storage, automatic promotion, semantic lookup.</p>
               </div>
               <span class="rounded-full bg-slate-900 px-2 py-1 text-[10px] text-slate-400">LRU · RAG · usage-aware</span>
             </div>
@@ -167,7 +168,7 @@
               </div>
               <div class="rounded-xl border border-slate-800 bg-slate-900/80 p-3">
                 <p class="text-[11px] font-semibold text-cyan-300">Medium-term</p>
-                <p class="mt-1 text-[11px] text-slate-400">Patterns that worked. Indexed by embeddings, usage, and recency.</p>
+                <p class="mt-1 text-[11px] text-slate-400">Patterns that worked. Indexed by embeddings, usage, recency.</p>
               </div>
               <div class="rounded-xl border border-slate-800 bg-slate-900/80 p-3">
                 <p class="text-[11px] font-semibold text-purple-300">Long-term</p>
@@ -179,40 +180,41 @@
       </section>
 
       <!-- Value proposition -->
-      <section id="value" class="mt-18 mt-16 space-y-6">
+      <section id="value" class="mt-16 space-y-6">
         <div class="max-w-3xl">
           <h2 class="text-xl font-semibold text-slate-50 sm:text-2xl">Stop wiring 50 tools into every agent.</h2>
           <p class="mt-3 text-sm text-slate-300 sm:text-base">
-            Most agents today are configured like overgeared Minecraft players: every pickaxe, every sword, every potion
-            equipped at once. Context windows saturate, routers thrash, and your carefully designed tools compete instead
-            of compose.
+            Most "tool-using" agents are configured like overgeared Minecraft players: every pickaxe, every sword, every
+            potion equipped at once. Context windows saturate, routers thrash, and the marginal tool hurts more than it
+            helps.
           </p>
           <p class="mt-2 text-sm text-slate-300 sm:text-base">
             <span class="font-semibold">AWB inverts the pattern.</span> Agents start lean, then strategically craft and
             equip tools for the job at hand, promoting proven tools into a reusable inventory and archiving the rest.
+            Less action space per step, more depth per token.
           </p>
         </div>
 
         <div class="mt-6 grid gap-4 md:grid-cols-3">
           <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-            <p class="text-xs font-semibold text-slate-200">From static catalog → dynamic workbench</p>
+            <p class="text-xs font-semibold text-slate-200">Static catalog → dynamic workbench</p>
             <p class="mt-2 text-xs text-slate-400">
-              Replace hard-coded tool manifests with an MCP workbench where agents <em>manufacture</em> tools on demand,
-              then reuse or discard them based on evidence.
+              Replace hard-coded manifests with an MCP workbench where agents <em>manufacture</em> tools on demand, then
+              reuse or discard them based on live feedback, not wishes.
             </p>
           </div>
           <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-            <p class="text-xs font-semibold text-slate-200">Tools become part of memory</p>
+            <p class="text-xs font-semibold text-slate-200">Tools as part of your knowledge graph</p>
             <p class="mt-2 text-xs text-slate-400">
-              Each tool carries metadata, embeddings, usage stats, and a decay curve. Search for a problem, not a
-              function name.
+              Every tool carries metadata, embeddings, usage stats, and a decay curve. You query by problem, not by
+              function name or file path.
             </p>
           </div>
           <div class="rounded-2xl border border-slate-800 bg-slate-950/70 p-4">
-            <p class="text-xs font-semibold text-slate-200">Minimal cognitive footprint</p>
+            <p class="text-xs font-semibold text-slate-200">Agent UX, not just LLM UX</p>
             <p class="mt-2 text-xs text-slate-400">
-              Only a slim "equipped" tool belt is surfaced at any point. Less action space per step, deeper reasoning
-              per token.
+              AWB optimizes the agent's decision surface: fewer levers per turn, higher-quality candidate tools, better
+              sample efficiency and more predictable behavior.
             </p>
           </div>
         </div>
@@ -244,7 +246,9 @@
           <div class="rounded-2xl border border-slate-800 bg-slate-950/80 p-4">
             <p class="text-xs font-semibold text-slate-200">Inventory ⇒ tool memory</p>
             <p class="mt-2 text-xs text-slate-400">
-              Crafted tools land in a 3-tier inventory: short-term scratch space, mid-term heuristics, long-term canon.</p>
+              Crafted tools land in a three-tier inventory: short-term scratch space, mid-term heuristics, long-term
+              canon.
+            </p>
           </div>
           <div class="rounded-2xl border border-slate-800 bg-slate-950/80 p-4">
             <p class="text-xs font-semibold text-slate-200">Equipped ⇒ active toolset</p>
@@ -356,7 +360,7 @@ const result = await mcp.call("awb.call", {
               tool inventory, exposed via MCP.
             </p>
           </div>
-          <span class="rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-[11px] text-slate-400">Works with any MCP-aware agent framework.</span>
+          <span class="rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-[11px] text-slate-400">Compatible with any MCP-aware agent framework.</span>
         </div>
 
         <div class="mt-6 grid gap-4 md:grid-cols-3">
@@ -375,7 +379,7 @@ const result = await mcp.call("awb.call", {
           <div class="rounded-2xl border border-slate-800 bg-slate-950/80 p-4 text-xs text-slate-300">
             <p class="font-semibold text-slate-100">3. Your runtime + storage</p>
             <p class="mt-2 text-slate-400">
-              Node/Python/HTTP substrate for executing tools, plus whatever vector store and DB you already use.
+              Node/Python/HTTP substrate for executing tools, plus whatever vector store and DB you already use in prod.
             </p>
           </div>
         </div>
@@ -388,7 +392,7 @@ const result = await mcp.call("awb.call", {
             <h2 class="text-xl font-semibold text-slate-50 sm:text-2xl">Who should actually care about AWB?</h2>
             <p class="mt-3 max-w-2xl text-sm text-slate-300">
               If "agent infrastructure" to you means more than wiring a JSON schema into OpenAI Tools, you're in the
-              target set. If not, this might be premature.
+              target set. If you're just shipping a single chat UI, this is probably premature.
             </p>
           </div>
           <span class="rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-[11px] text-slate-400">Deliberately opinionated. Filters non-builders out.</span>
@@ -419,18 +423,158 @@ const result = await mcp.call("awb.call", {
         </div>
       </section>
 
+      <!-- FAQ -->
+      <section id="faq" class="mt-20">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <h2 class="text-xl font-semibold text-slate-50 sm:text-2xl">FAQ</h2>
+            <p class="mt-3 max-w-2xl text-sm text-slate-300">
+              A few sharp questions we've already heard from infra-heavy teams and YC-style founders.
+            </p>
+          </div>
+        </div>
+
+        <div id="accordion-faq" data-accordion="collapse" class="mt-6 space-y-2">
+          <!-- Q1 -->
+          <div class="rounded-2xl border border-slate-800 bg-slate-950/80">
+            <h3 id="faq-heading-1">
+              <button
+                type="button"
+                class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-slate-100"
+                data-accordion-target="#faq-body-1"
+                aria-expanded="true"
+                aria-controls="faq-body-1"
+              >
+                <span>Why not just add more tools to my agent?</span>
+                <svg data-accordion-icon class="h-4 w-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                </svg>
+              </button>
+            </h3>
+            <div id="faq-body-1" class="" aria-labelledby="faq-heading-1">
+              <div class="border-t border-slate-800 px-4 py-3 text-xs text-slate-400">
+                Every new tool increases routing entropy and inflates the action space the model has to reason over. At
+                some point, the marginal tool makes the system strictly worse. AWB keeps the active tool set tiny and
+                shifts everything else into a searchable, decaying inventory instead of the context window.
+              </div>
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="rounded-2xl border border-slate-800 bg-slate-950/80">
+            <h3 id="faq-heading-2">
+              <button
+                type="button"
+                class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-slate-100"
+                data-accordion-target="#faq-body-2"
+                aria-expanded="false"
+                aria-controls="faq-body-2"
+              >
+                <span>Is AWB a framework, an orchestrator, or something else?</span>
+                <svg data-accordion-icon class="h-4 w-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                </svg>
+              </button>
+            </h3>
+            <div id="faq-body-2" class="hidden" aria-labelledby="faq-heading-2">
+              <div class="border-t border-slate-800 px-4 py-3 text-xs text-slate-400">
+                AWB is intentionally <span class="font-semibold text-slate-200">below</span> your orchestrator. Think of it
+                as an MCP-native workbench + inventory layer. Your existing planner / router / graph engine stays in
+                charge; AWB just gives agents a place to craft and manage tools over time.
+              </div>
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="rounded-2xl border border-slate-800 bg-slate-950/80">
+            <h3 id="faq-heading-3">
+              <button
+                type="button"
+                class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-slate-100"
+                data-accordion-target="#faq-body-3"
+                aria-expanded="false"
+                aria-controls="faq-body-3"
+              >
+                <span>How does this actually improve my metrics?</span>
+                <svg data-accordion-icon class="h-4 w-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                </svg>
+              </button>
+            </h3>
+            <div id="faq-body-3" class="hidden" aria-labelledby="faq-heading-3">
+              <div class="border-t border-slate-800 px-4 py-3 text-xs text-slate-400">
+                In practice teams care about: win-rate on complex tasks, latency, cost, and breakage under edge cases.
+                AWB helps by shrinking the decision surface (fewer tools to choose from) while increasing reuse of
+                proven tools. That tends to mean fewer calls, more deterministic behavior, and less prompt spaghetti.
+              </div>
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="rounded-2xl border border-slate-800 bg-slate-950/80">
+            <h3 id="faq-heading-4">
+              <button
+                type="button"
+                class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-slate-100"
+                data-accordion-target="#faq-body-4"
+                aria-expanded="false"
+                aria-controls="faq-body-4"
+              >
+                <span>What does integration actually look like?</span>
+                <svg data-accordion-icon class="h-4 w-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                </svg>
+              </button>
+            </h3>
+            <div id="faq-body-4" class="hidden" aria-labelledby="faq-heading-4">
+              <div class="border-t border-slate-800 px-4 py-3 text-xs text-slate-400">
+                You run <span class="font-mono text-[11px]">npx awb start</span> next to your agent runtime, then add a
+                handful of MCP calls inside your planner: <span class="font-mono text-[11px]">awb.craft</span>,
+                <span class="font-mono text-[11px]">awb.search</span>, <span class="font-mono text-[11px]">awb.call</span>.
+                No new SDK or vendor console to learn.
+              </div>
+            </div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="rounded-2xl border border-slate-800 bg-slate-950/80">
+            <h3 id="faq-heading-5">
+              <button
+                type="button"
+                class="flex w-full items-center justify-between px-4 py-3 text-left text-sm font-medium text-slate-100"
+                data-accordion-target="#faq-body-5"
+                aria-expanded="false"
+                aria-controls="faq-body-5"
+              >
+                <span>Who is AWB <em>not</em> for?</span>
+                <svg data-accordion-icon class="h-4 w-4 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5" />
+                </svg>
+              </button>
+            </h3>
+            <div id="faq-body-5" class="hidden" aria-labelledby="faq-heading-5">
+              <div class="border-t border-slate-800 px-4 py-3 text-xs text-slate-400">
+                If you're shipping a single chat UI, don't have an explicit notion of "agent", or aren't instrumenting
+                behavior yet, AWB is probably overkill. It's designed for teams who are already thinking about planners,
+                tool routing, evals, and infra, not for one-off demo apps.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- GitHub / CTA -->
       <section id="github" class="mt-20 rounded-3xl border border-slate-800 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 px-6 py-8 sm:px-8">
         <div class="grid gap-6 md:grid-cols-[1.1fr_minmax(0,0.9fr)] md:items-center">
           <div>
             <h2 class="text-xl font-semibold text-slate-50 sm:text-2xl">Open source, MCP-native by design.</h2>
             <p class="mt-3 text-sm text-slate-300">
-              AWB will launch as an open-source MCP server with a minimal CLI. No black-box SaaS, no hidden state.
+              AWB is being built as an open-source MCP server with a minimal CLI. No black-box SaaS, no hidden state.
               Just a workbench your agents can reason about.
             </p>
             <div class="mt-5 flex flex-wrap items-center gap-3">
               <a
-                href="#"
+                href="https://github.com/ShipFail/agent-workbench"
                 class="inline-flex items-center gap-2 rounded-lg bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-950 shadow-lg shadow-slate-100/20 hover:bg-white"
               >
                 Star the repo
@@ -478,7 +622,7 @@ const result = await mcp.call("awb.call", {
           <p>© <span id="year"></span> Agent Workbench (AWB). Built for AI-native builders.</p>
           <div class="flex items-center gap-4">
             <a href="#mcp" class="hover:text-slate-300">MCP surface</a>
-            <a href="#github" class="hover:text-slate-300">GitHub</a>
+            <a href="https://github.com/ShipFail/agent-workbench" class="hover:text-slate-300">GitHub</a>
           </div>
         </div>
       </footer>
