@@ -1,9 +1,3 @@
-# agent-workbench
-
-AWB is an MCP-powered crafting table where AI agents can create, manage, search, equip, evolve, and forget tools — using a memory-aware inventory that behaves like short-term, medium-term, and long-term human memory.
-
-The AI Agent Workbench — a crafting table where agents craft new tools.
-
 # Agent Workbench (AWB)
 
 **The Crafting Table for AI Agents**
@@ -99,7 +93,7 @@ Any agent can:
 **Scenario:** An agent needs to scrape a website, but no scraping tool exists.
 
 1. Agent detects missing capability
-2. Agent invokes AWB's `craftTool` API
+2. Agent invokes AWB`s `craftTool` API
 3. AWB generates a scraping tool with schema + code
 4. AWB registers it automatically
 5. Agent uses the newly crafted tool to complete the task
@@ -112,25 +106,254 @@ This mirrors the Minecraft experience:
 
 ## 📦 Installation
 
-(Coming soon — MCP tool package, npm module, Python module, etc.)
+From the project root:
 
+```bash
+npm install
+npm run build
 ```
-npm install agent-workbench
+
+This compiles TypeScript to `dist/`.
+
+---
+
+## 💻 Usage
+
+### 1. Initialize an AWB workspace
+
+```bash
+npx awb init
+# or, if not installed globally:
+node dist/cli.js init
+```
+
+This creates an inventory file at `.awb/inventory.json` if it does not exist.
+
+### 2. Start the MCP server
+
+```bash
+npx awb start
+# or
+node dist/cli.js start
+```
+
+Options:
+
+```bash
+npx awb start --port 7777 --inventory .awb/inventory.json
+```
+
+The server runs an HTTP JSON-RPC endpoint on the given port.
+
+### 3. CLI Inventory Commands (for humans)
+
+List tools:
+
+```bash
+npx awb inventory list
+```
+
+Search tools:
+
+```bash
+npx awb inventory search "image resize"
+```
+
+Inspect a tool:
+
+```bash
+npx awb inventory inspect <toolId>
+```
+
+Delete a tool:
+
+```bash
+npx awb inventory delete <toolId>
 ```
 
 ---
 
-## 🔌 MCP Interface
+## �� MCP Interface
 
-**Endpoints (draft):**
+The server implements a minimal subset of the MCP JSON-RPC interface over HTTP:
 
-* `craftTool` — Create a new tool with constraints
-* `registerTool` — Add a crafted tool to the environment
-* `listTools` — Retrieve all available tools
-* `deleteTool` — Remove or retire a tool
-* `suggestToolRecipe` — Get recommended crafting strategies
+- `tools/list`
+- `tools/call`
 
-Full schema coming soon.
+### Endpoint
+
+```text
+POST http://localhost:<port>/
+Content-Type: application/json
+```
+
+### `tools/list`
+
+**Request:**
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/list"
+}
+```
+
+**Response:**
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "tools": [
+      {
+        "name": "awb_craftTool",
+        "description": "Craft a new tool and store it in the Agent WorkBench inventory...",
+        "inputSchema": { "...": "JSON Schema" }
+      }
+      // ...
+    ]
+  }
+}
+```
+
+### `tools/call`
+
+**General form:**
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "tools/call",
+  "params": {
+    "name": "<toolName>",
+    "arguments": {
+      "...": "tool-specific arguments"
+    }
+  }
+}
+```
+
+---
+
+## 🧰 AWB Tools
+
+The MCP server exposes these tools:
+
+### 1. `awb_craftTool`
+
+Crafts a new tool and stores it in the inventory.
+
+**Arguments:**
+
+- `name` (string, required)
+- `description` (string, optional)
+- `code` (string, optional – stored as reference only)
+- `metadata` (object, optional)
+  - `tags` (string[])
+  - `problem` (string)
+  - `createdByAgent` (string)
+
+**Response:**
+
+```json
+{
+  "tool": {
+    "id": "tool_...",
+    "name": "resizeImage",
+    "memoryLevel": "short_term",
+    "usageCount": 0,
+    "...": "other metadata"
+  }
+}
+```
+
+### 2. `awb_deleteTool`
+
+Deletes a tool by ID.
+
+**Arguments:**
+
+- `id` (string, required)
+
+**Response:**
+
+```json
+{ "deleted": true }
+```
+
+### 3. `awb_listTools`
+
+Lists tools in the inventory, optionally filtered.
+
+**Arguments (optional):**
+
+- `memoryLevel` (`short_term` | `medium_term` | `long_term` | `archived`)
+- `query` (string – simple search over name/description/metadata)
+
+**Response:**
+
+```json
+{ "tools": [ /* ToolRecord[] */ ] }
+```
+
+### 4. `awb_searchTools`
+
+Searches tools using a lightweight scoring heuristic.
+
+**Arguments:**
+
+- `query` (string, required)
+- `limit` (number, optional, default 5)
+
+**Response:**
+
+```json
+{ "tools": [ /* ToolRecord[] */ ] }
+```
+
+### 5. `awb_callTool`
+
+Records a conceptual invocation of a tool and promotes it along memory levels.
+
+**Arguments:**
+
+- `id` (string, required)
+- `context` (string, optional)
+
+**Response:**
+
+```json
+{
+  "tool": {
+    "id": "tool_...",
+    "usageCount": 12,
+    "memoryLevel": "medium_term",
+    "...": "other metadata"
+  },
+  "message": "Tool usage recorded. This MVP does not execute dynamic code, only tracks and manages tools."
+}
+```
+
+---
+
+## 🧠 Memory / Inventory Model
+
+Each tool has a `memoryLevel`:
+
+- `short_term` – newly crafted tools, experimental tools
+- `medium_term` – tools used enough times to be considered useful
+- `long_term` – frequently used, highly valuable tools
+- `archived` – tools that are not actively used (future extension)
+
+### Promotion Logic (MVP)
+
+- `short_term` → `medium_term` when `usageCount >= 5`
+- `medium_term` → `long_term` when `usageCount >= 25`
+
+Tools are updated on each `awb_callTool` invocation.
 
 ---
 
@@ -143,6 +366,14 @@ Full schema coming soon.
 * [ ] Multi-agent collaboration
 * [ ] Crafting recipes library
 * [ ] Visual tool crafting dashboard
+
+### Next Steps (MVP Evolution)
+
+- Add auth / ACLs around MCP access.
+- Introduce vector embeddings for better `awb_searchTools` retrieval.
+- Implement safe execution sandboxes for tool `code`.
+- Add metrics and observability (e.g., Prometheus, OpenTelemetry).
+- Add tests and richer promotion/demotion policies.
 
 ---
 
@@ -161,11 +392,11 @@ AWB exists to empower them.
 
 ## 🧙 Inspiration
 
-Minecraft's Workbench and Crafting Table — the core of creativity.
+Minecraft`s Workbench and Crafting Table — the core of creativity.
 
 Your agent is the player.
 AWB is the Workbench.
-The tools it crafts are your AI system's weapons, utilities, and magic.
+The tools it crafts are your AI system`s weapons, utilities, and magic.
 
 ---
 
