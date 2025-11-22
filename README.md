@@ -4,6 +4,10 @@
 
 Agent Workbench (AWB) is an MCP tool designed as the *Minecraft-style Workbench* for AI agents. Just like players craft tools on a Workbench to solve problems in Minecraft, AI agents use AWB to craft, evolve, and manage new tools when solving complex tasks.
 
+<div align="center">
+  <image src="docs/agent-workbench-logo.webp" alt="Agent WorkBench Logo" height=256 width=256 />
+</div>
+
 AWB acts as a foundational crafting system where agents can:
 
 * Create new tools on demand
